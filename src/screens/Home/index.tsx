@@ -1,13 +1,50 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { FlatList, ScrollView } from "react-native";
 
-// import { Container } from './styles';
+import Search from "../../components/Search";
+import ProductItem from "../../components/ProductItem";
+import Section from "../../components/Section";
+
+import useFetch from "../../hooks/useFetch";
+
+import { Container } from "./styles";
 
 const Home: React.FC = () => {
+  const { isLoading, error, data } = useFetch({
+    url: "/products",
+    method: "GET",
+  });
+
   return (
-    <View>
-      <Text>Home</Text>
-    </View>
+    <ScrollView>
+      <Container>
+        <Search />
+        <Section name="Exclusive Offer" onPress={() => {}} />
+        <FlatList
+          keyExtractor={(item) => item.title}
+          data={data}
+          renderItem={({ item }) => <ProductItem data={item} />}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+        <Section name="Best Selling" onPress={() => {}} />
+        <FlatList
+          keyExtractor={(item) => item.title}
+          data={data}
+          renderItem={({ item }) => <ProductItem data={item} />}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+        <Section name="Grocries" onPress={() => {}} />
+        <FlatList
+          keyExtractor={(item) => item.title}
+          data={data}
+          renderItem={({ item }) => <ProductItem data={item} />}
+          horizontal
+          showsHorizontalScrollIndicator={false}
+        />
+      </Container>
+    </ScrollView>
   );
 };
 
