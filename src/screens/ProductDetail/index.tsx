@@ -1,10 +1,13 @@
 import React from "react";
-import { View } from "react-native";
 
-// import { Container } from './styles';
+import { Container, Title } from "./styles";
 
 const ProductDetail: React.FC = () => {
-  return <View />;
+  return (
+    <Container>
+      <Title>Title</Title>
+    </Container>
+  );
 };
 
 export default ProductDetail;
