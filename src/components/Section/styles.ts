@@ -1,6 +1,8 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 
-export const Container = styled.View``;
+export const Container = styled.View`
+  margin: 0 15px;
+`;
 
 export const Name = styled.Text`
   font-size: 20px;
@@ -9,5 +11,5 @@ export const Name = styled.Text`
 export const Button = styled.TouchableOpacity``;
 
 export const ButtonText = styled.Text`
-  color: ${(props) => props.theme.colors.PRIMARY};
+  color: ${props => props.theme.colors.PRIMARY};
 `;

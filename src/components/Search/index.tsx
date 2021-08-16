@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import { Container, Input } from "./styles";
+import { Container, Input } from './styles';
 
 const Search: React.FC = () => {
   return (

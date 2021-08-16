@@ -1,12 +1,12 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 
 export const Container = styled.View`
   width: 150px;
   border-width: 1px;
   border-radius: 15px;
   padding: 10px;
-  margin-right: 15px;
-  border-color: ${(props) => props.theme.colors.GREY};
+  margin-left: 15px;
+  border-color: ${props => props.theme.colors.GREY};
 `;
 
 export const Image = styled.Image`
@@ -20,7 +20,7 @@ export const Title = styled.Text`
 `;
 
 export const Weight = styled.Text`
-  color: ${(props) => props.theme.colors.GREY};
+  color: ${props => props.theme.colors.GREY};
 `;
 
 export const Price = styled.Text``;
@@ -29,5 +29,5 @@ export const Add = styled.TouchableOpacity`
   width: 40px;
   height: 40px;
   border-radius: 15px;
-  background-color: ${(props) => props.theme.colors.PRIMARY};
+  background-color: ${props => props.theme.colors.PRIMARY};
 `;
