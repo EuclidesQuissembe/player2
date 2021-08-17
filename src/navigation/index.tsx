@@ -6,12 +6,13 @@ import Tabs from './tabs';
 import Login from '../screens/Login';
 import Splash from '../screens/Splash';
 import ProductDetailt from '../screens/ProductDetail';
+import OrderAccess from '../screens/OrderAccess';
 
 const Stack = createNativeStackNavigator();
 
 export default function Routes() {
   return (
-    <Stack.Navigator initialRouteName="First">
+    <Stack.Navigator initialRouteName="ProductDetail">
       <Stack.Screen
         name="First"
         component={Tabs}
@@ -38,6 +39,12 @@ export default function Routes() {
         name="ProductDetail"
         component={ProductDetailt}
         options={{ title: '' }}
+      />
+
+      <Stack.Screen
+        name="OrderAccess"
+        component={OrderAccess}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

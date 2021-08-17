@@ -1,5 +1,7 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import Button from '../../components/Button';
 
@@ -22,13 +24,32 @@ const ProductDetail: React.FC = () => {
   return (
     <Container>
       <Padding>
-        <Title>Naturel Red Apple</Title>
+        <View
+          style={{
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}>
+          <Title>Naturel Red Apple</Title>
+          <FontAwesome name="heart-o" size={24} />
+        </View>
         <Unit>Preço por 1kg</Unit>
         <Col style={{ marginVertical: 20 }}>
-          <Count>5</Count>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <TouchableOpacity>
+              <MaterialIcons name="remove" size={24} />
+            </TouchableOpacity>
+            <Count>5</Count>
+            <TouchableOpacity>
+              <MaterialIcons name="add" size={24} />
+            </TouchableOpacity>
+          </View>
           <Value>$4.99</Value>
         </Col>
-        <Subtitle>Product Detail</Subtitle>
+        <Col>
+          <Subtitle>Product Detail</Subtitle>
+          <MaterialIcons name="keyboard-arrow-right" size={24} />
+        </Col>
         <Description>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet
           porta leo. Sed dapibus, odio vel dapibus pellentesque, magna dui
@@ -41,12 +62,18 @@ const ProductDetail: React.FC = () => {
         <Separator />
         <Col>
           <Subtitle>Nutrictions</Subtitle>
-          <Nutrition>100gr</Nutrition>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Nutrition>100gr</Nutrition>
+            <MaterialIcons name="keyboard-arrow-right" size={24} />
+          </View>
         </Col>
         <Separator />
         <Col>
           <Subtitle>Review</Subtitle>
-          <Review>5</Review>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <Review>5</Review>
+            <MaterialIcons name="keyboard-arrow-right" size={24} />
+          </View>
         </Col>
       </Padding>
       <View style={{ paddingHorizontal: 15, paddingBottom: 15 }}>

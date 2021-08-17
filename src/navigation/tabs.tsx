@@ -1,5 +1,4 @@
 import React from 'react';
-import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -20,7 +19,7 @@ const navigation: React.FC = () => {
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: () => <Entypo name="shop" size={24} />,
+          tabBarIcon: () => <MaterialIcons name="store" size={24} />,
         }}
       />
       <Tab.Screen

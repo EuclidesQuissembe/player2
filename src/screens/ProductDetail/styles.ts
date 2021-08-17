@@ -58,4 +58,5 @@ export const Count = styled.Text`
   border: 1px solid #e2e2e2;
   padding: 10px 15px;
   border-radius: 15px;
+  margin: 0 15px;
 `;
