@@ -1,5 +1,6 @@
-import { Product } from "../../@types/data";
+import { Product } from '../../@types/data';
 
 export type Props = {
   data: Product;
+  full?: boolean;
 };

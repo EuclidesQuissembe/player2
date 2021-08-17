@@ -1,12 +1,19 @@
 import styled from 'styled-components/native';
+import { Dimensions } from 'react-native';
 
-export const Container = styled.View`
-  width: 150px;
+type Props = {
+  full?: boolean;
+};
+
+export const Container = styled.View<Props>`
+  width: ${props =>
+    props.full ? Dimensions.get('window').width / 2 - 23 : 150}px;
   border-width: 1px;
   border-radius: 15px;
   padding: 10px;
   margin-left: 15px;
   border-color: ${props => props.theme.colors.GREY};
+  margin-bottom: 15px;
 `;
 
 export const Image = styled.Image`
@@ -29,5 +36,7 @@ export const Add = styled.TouchableOpacity`
   width: 40px;
   height: 40px;
   border-radius: 15px;
+  justify-content: center;
+  align-items: center;
   background-color: ${props => props.theme.colors.PRIMARY};
 `;

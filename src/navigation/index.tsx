@@ -1,16 +1,17 @@
-import * as React from "react";
+import * as React from 'react';
 
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import Tabs from "./tabs";
-import Login from "../screens/Login";
-import Splash from "../screens/Splash";
+import Tabs from './tabs';
+import Login from '../screens/Login';
+import Splash from '../screens/Splash';
+import ProductDetailt from '../screens/ProductDetail';
 
 const Stack = createNativeStackNavigator();
 
 export default function Routes() {
   return (
-    <Stack.Navigator initialRouteName="Splash">
+    <Stack.Navigator initialRouteName="First">
       <Stack.Screen
         name="First"
         component={Tabs}
@@ -31,6 +32,12 @@ export default function Routes() {
         options={{
           headerShown: false,
         }}
+      />
+
+      <Stack.Screen
+        name="ProductDetail"
+        component={ProductDetailt}
+        options={{ title: '' }}
       />
     </Stack.Navigator>
   );

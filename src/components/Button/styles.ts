@@ -1,13 +1,13 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
 
 export const Container = styled.TouchableOpacity`
   padding: 15px 0;
   align-items: center;
-  border-radius: 20px;
-  background-color: ${(props) => props.theme.colors.PRIMARY};
+  border-radius: 15;
+  background-color: ${props => props.theme.colors.PRIMARY};
 `;
 
 export const Label = styled.Text`
-  color: ${(props) => props.theme.colors.WHITE};
+  color: ${props => props.theme.colors.WHITE};
   text-align: center;
 `;
