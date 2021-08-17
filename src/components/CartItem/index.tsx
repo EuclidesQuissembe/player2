@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import {
@@ -42,7 +42,9 @@ const CartItem: React.FC = () => {
         </View>
       </View>
       <View style={{ justifyContent: 'space-between', alignItems: 'flex-end' }}>
-        <MaterialIcons name="close" size={24} color="#aaa" />
+        <TouchableOpacity activeOpacity={0.7} onPress={() => {}}>
+          <MaterialIcons name="close" size={24} color="#aaa" />
+        </TouchableOpacity>
         <Value>$4.99</Value>
       </View>
     </Container>

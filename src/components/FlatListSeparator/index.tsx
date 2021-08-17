@@ -7,7 +7,6 @@ const FlatListSeparator: React.FC = () => {
       style={{
         borderBottomWidth: 1,
         borderBottomColor: '#ddd',
-        marginHorizontal: 20,
       }}
     />
   );
