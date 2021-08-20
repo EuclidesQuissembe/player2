@@ -46,7 +46,9 @@ export default function Routes() {
           <Stack.Screen
             name="ProductDetail"
             component={ProductDetailt}
-            options={{ title: '' }}
+            options={{
+              title: '',
+            }}
           />
 
           <Stack.Screen

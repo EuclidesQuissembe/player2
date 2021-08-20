@@ -17,3 +17,5 @@ export const removeFromCart = (productTitle: string) =>
 
 export const deleteFromCart = (productTitle: string) =>
   action(CartTypes.DELETE_FROM_CART, { productTitle });
+
+export const deleteAll = () => action(CartTypes.DELETE_ALL);

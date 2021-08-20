@@ -62,7 +62,7 @@ const CartItem: React.FC<Props> = ({ product }) => {
           onPress={() => dispatch(deleteFromCart(product.title))}>
           <MaterialIcons name="close" size={24} color="#aaa" />
         </TouchableOpacity>
-        <Value>{product.value}</Value>
+        <Value>${product.value}</Value>
       </View>
     </Container>
   );

@@ -44,7 +44,8 @@ const reducer: Reducer<CartState> = (state = INITIAL_STATE, action) => {
         );
 
         if (productIndex >= 0) {
-          draft.data[productIndex].amount -= 1;
+          if (draft.data[productIndex].amount > 1)
+            draft.data[productIndex].amount -= 1;
         }
       });
     case CartTypes.DELETE_FROM_CART:
@@ -57,6 +58,12 @@ const reducer: Reducer<CartState> = (state = INITIAL_STATE, action) => {
           draft.data.splice(productIndex, 1);
         }
       });
+    case CartTypes.DELETE_ALL:
+      return {
+        data: [],
+        loading: false,
+        error: false,
+      };
     case CartTypes.LOAD_FAILURE:
       return {
         data: [],

@@ -18,15 +18,8 @@ const Login: React.FC = () => {
   const signIn = async () => {
     setIsLoading(true);
     try {
-      const response = await login();
-
-      if (response) {
-        navigation.navigate('First');
-      }
-    } catch (err) {
-    } finally {
-      setIsLoading(false);
-    }
+      await login();
+    } catch (err) {}
   };
 
   return (

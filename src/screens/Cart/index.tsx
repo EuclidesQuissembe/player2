@@ -23,8 +23,12 @@ import {
 } from './styles';
 
 import { Props } from './types';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootScreenList } from '../../navigation/types';
 
 const Cart: React.FC<Props> = ({ data }) => {
+  const navigation = useNavigation<NavigationProp<RootScreenList>>();
+
   const refRBSheet = useRef<RBSheetProps>(null);
 
   const total = useMemo(() => {
@@ -55,21 +59,24 @@ const Cart: React.FC<Props> = ({ data }) => {
     {
       id: '4',
       title: 'Total Cost',
-      element: <Text>$13.97</Text>,
+      element: <Text>${total}</Text>,
     },
   ];
 
   return (
     <Container>
       <FlatList
+        keyExtractor={item => item.title}
         data={data.data}
         renderItem={({ item }) => <CartItem product={item} />}
         ItemSeparatorComponent={() => <FlatListSeparator />}
       />
-      <Button activeOpacity={0.7} onPress={() => refRBSheet?.current?.open()}>
-        <ButtonText>Go to Checkout</ButtonText>
-        <Total>{total}</Total>
-      </Button>
+      {data.data.length > 0 && (
+        <Button activeOpacity={0.7} onPress={() => refRBSheet?.current?.open()}>
+          <ButtonText>Go to Checkout</ButtonText>
+          <Total>${total}</Total>
+        </Button>
+      )}
 
       <RBSheet
         ref={refRBSheet}
@@ -124,7 +131,10 @@ const Cart: React.FC<Props> = ({ data }) => {
               <Text style={{ color: 'black' }}>Condictions</Text>
             </Agree>
 
-            <ButtonComponent text="Place Order" onPress={() => {}} />
+            <ButtonComponent
+              text="Place Order"
+              onPress={() => navigation.navigate('OrderAccess')}
+            />
           </View>
         </View>
       </RBSheet>
