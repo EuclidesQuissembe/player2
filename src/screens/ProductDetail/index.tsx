@@ -2,8 +2,13 @@ import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { useDispatch } from 'react-redux';
 
 import Button from '../../components/Button';
+
+import useApp from '../../hooks/useApp';
+
+import { addToCart, removeFromCart } from '../../store/modules/carts/actions';
 
 import {
   Container,
@@ -21,6 +26,9 @@ import {
 } from './styles';
 
 const ProductDetail: React.FC = () => {
+  const dispatch = useDispatch();
+  const { product } = useApp();
+
   return (
     <Container>
       <Padding>
@@ -30,40 +38,33 @@ const ProductDetail: React.FC = () => {
             justifyContent: 'space-between',
             alignItems: 'center',
           }}>
-          <Title>Naturel Red Apple</Title>
+          <Title>{product?.title}</Title>
           <FontAwesome name="heart-o" size={24} />
         </View>
-        <Unit>Preço por 1kg</Unit>
+        <Unit>{product?.nutrition}</Unit>
         <Col style={{ marginVertical: 20 }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => dispatch(removeFromCart(product?.title!))}>
               <MaterialIcons name="remove" size={24} />
             </TouchableOpacity>
-            <Count>5</Count>
-            <TouchableOpacity>
+            <Count>0</Count>
+            <TouchableOpacity onPress={() => dispatch(addToCart(product!, 1))}>
               <MaterialIcons name="add" size={24} />
             </TouchableOpacity>
           </View>
-          <Value>$4.99</Value>
+          <Value>${product?.value}</Value>
         </Col>
         <Col>
           <Subtitle>Product Detail</Subtitle>
           <MaterialIcons name="keyboard-arrow-right" size={24} />
         </Col>
-        <Description>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sit amet
-          porta leo. Sed dapibus, odio vel dapibus pellentesque, magna dui
-          bibendum velit, eget vulputate mi nisi vitae arcu. Nullam
-          sollicitudin, ex ut dictum vestibulum, nisl nunc suscipit ligula,
-          pharetra mollis justo nisi a mauris. Nullam commodo nisi in faucibus
-          tincidunt. Vivamus maximus, est et aliquam porttitor, justo erat
-          dignissim nisi, at euismod libero dolor in ligula.
-        </Description>
+        <Description>{product?.description}</Description>
         <Separator />
         <Col>
           <Subtitle>Nutrictions</Subtitle>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Nutrition>100gr</Nutrition>
+            <Nutrition>{product?.nutrition}</Nutrition>
             <MaterialIcons name="keyboard-arrow-right" size={24} />
           </View>
         </Col>

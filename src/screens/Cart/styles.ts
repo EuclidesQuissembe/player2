@@ -31,3 +31,8 @@ export const Agree = styled.Text`
   color: #aaa;
   margin: 20px 0;
 `;
+
+export const Total = styled.Text`
+  padding: 5px;
+  background-color: #0f0;
+`;

@@ -5,7 +5,7 @@ type Props = {
   full?: boolean;
 };
 
-export const Container = styled.View<Props>`
+export const Container = styled.TouchableOpacity<Props>`
   width: ${props =>
     props.full ? Dimensions.get('window').width / 2 - 23 : 150}px;
   border-width: 1px;

@@ -60,3 +60,7 @@ export const Count = styled.Text`
   border-radius: 15px;
   margin: 0 15px;
 `;
+
+export const Image = styled.Image`
+  width: ;
+`;

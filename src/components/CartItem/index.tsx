@@ -1,6 +1,13 @@
 import React from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { useDispatch } from 'react-redux';
+
+import {
+  removeFromCart,
+  addToCart,
+  deleteFromCart,
+} from '../../store/modules/carts/actions';
 
 import {
   Container,
@@ -12,12 +19,18 @@ import {
   BtnUpdate,
 } from './styles';
 
-const CartItem: React.FC = () => {
+import { Props } from './types';
+
+const CartItem: React.FC<Props> = ({ product }) => {
+  const dispatch = useDispatch();
+
+  const photo = product.photos.find(item => item.main);
+
   return (
     <Container>
       <Image
         source={{
-          uri: 'https://loremflickr.com/320/240',
+          uri: photo?.url,
         }}
       />
       <View
@@ -27,25 +40,29 @@ const CartItem: React.FC = () => {
           paddingHorizontal: 10,
         }}>
         <View>
-          <Title>Bell Pepper Red</Title>
-          <Unit>1kg, Price</Unit>
+          <Title>{product.title}</Title>
+          <Unit>{product.unit}</Unit>
         </View>
         <View
           style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
-          <BtnUpdate>
+          <BtnUpdate onPress={() => dispatch(removeFromCart(product.title))}>
             <MaterialIcons name="remove" size={24} />
           </BtnUpdate>
-          <Count style={{ marginHorizontal: 10 }}>1</Count>
-          <BtnUpdate activeOpacity={0.7} onPress={() => {}}>
+          <Count style={{ marginHorizontal: 10 }}>{product.amount}</Count>
+          <BtnUpdate
+            activeOpacity={0.7}
+            onPress={() => dispatch(addToCart(product, 1))}>
             <MaterialIcons name="add" size={24} />
           </BtnUpdate>
         </View>
       </View>
       <View style={{ justifyContent: 'space-between', alignItems: 'flex-end' }}>
-        <TouchableOpacity activeOpacity={0.7} onPress={() => {}}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => dispatch(deleteFromCart(product.title))}>
           <MaterialIcons name="close" size={24} color="#aaa" />
         </TouchableOpacity>
-        <Value>$4.99</Value>
+        <Value>{product.value}</Value>
       </View>
     </Container>
   );
