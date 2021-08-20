@@ -1,3 +1,4 @@
+import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
 
 export const Container = styled.View`
@@ -59,4 +60,9 @@ export const Count = styled.Text`
   padding: 10px 15px;
   border-radius: 15px;
   margin: 0 15px;
+`;
+
+export const Image = styled.Image`
+  width: ${Dimensions.get('window').width}px;
+  height: 250px;
 `;

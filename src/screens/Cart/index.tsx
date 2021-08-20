@@ -1,11 +1,15 @@
-import React, { useRef } from 'react';
+import React, { useMemo, useRef } from 'react';
 import { FlatList, View, Text, TouchableOpacity } from 'react-native';
-import RBSheet from 'react-native-raw-bottom-sheet';
+import RBSheet, { RBSheetProps } from 'react-native-raw-bottom-sheet';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { connect } from 'react-redux';
+import { bindActionCreators, Dispatch } from 'redux';
+
+import * as CartActions from '../../store/modules/carts/actions';
+import { ApplicationState } from '../../store';
 
 import FlatListSeparator from '../../components/FlatListSeparator';
 import CartItem from '../../components/CartItem';
-
 import ButtonComponent from '../../components/Button';
 
 import {
@@ -15,10 +19,26 @@ import {
   CheckoutText,
   OrderButton,
   Agree,
+  Total,
 } from './styles';
 
-const Cart: React.FC = () => {
-  const refRBSheet = useRef();
+import { Props } from './types';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootScreenList } from '../../navigation/types';
+
+const Cart: React.FC<Props> = ({ data }) => {
+  const navigation = useNavigation<NavigationProp<RootScreenList>>();
+
+  const refRBSheet = useRef<RBSheetProps>(null);
+
+  const total = useMemo(() => {
+    let operation = 0;
+    data.data.map(cart => {
+      operation += cart.amount * cart.value;
+    });
+
+    return operation;
+  }, [data]);
 
   const orderOptions = [
     {
@@ -39,19 +59,24 @@ const Cart: React.FC = () => {
     {
       id: '4',
       title: 'Total Cost',
-      element: <Text>$13.97</Text>,
+      element: <Text>${total}</Text>,
     },
   ];
+
   return (
     <Container>
       <FlatList
-        data={['', '', '', '', '', '', '', '', '', '', '', '', '', '', '']}
-        renderItem={() => <CartItem />}
+        keyExtractor={item => item.title}
+        data={data.data}
+        renderItem={({ item }) => <CartItem product={item} />}
         ItemSeparatorComponent={() => <FlatListSeparator />}
       />
-      <Button activeOpacity={0.7} onPress={() => refRBSheet.current.open()}>
-        <ButtonText>Go to Checkout</ButtonText>
-      </Button>
+      {data.data.length > 0 && (
+        <Button activeOpacity={0.7} onPress={() => refRBSheet?.current?.open()}>
+          <ButtonText>Go to Checkout</ButtonText>
+          <Total>${total}</Total>
+        </Button>
+      )}
 
       <RBSheet
         ref={refRBSheet}
@@ -106,7 +131,10 @@ const Cart: React.FC = () => {
               <Text style={{ color: 'black' }}>Condictions</Text>
             </Agree>
 
-            <ButtonComponent text="Place Order" />
+            <ButtonComponent
+              text="Place Order"
+              onPress={() => navigation.navigate('OrderAccess')}
+            />
           </View>
         </View>
       </RBSheet>
@@ -114,4 +142,11 @@ const Cart: React.FC = () => {
   );
 };
 
-export default Cart;
+const mapStateToProps = (state: ApplicationState) => ({
+  data: state.cart,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) =>
+  bindActionCreators(CartActions, dispatch);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

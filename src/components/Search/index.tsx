@@ -2,10 +2,16 @@ import React from 'react';
 
 import { Container, Input } from './styles';
 
-const Search: React.FC = () => {
+import { Props } from './types';
+
+const Search: React.FC<Props> = ({ onChangeText }) => {
   return (
     <Container>
-      <Input placeholder="Search store" />
+      <Input
+        keyboardType="web-search"
+        placeholder="Search store"
+        onChangeText={onChangeText}
+      />
     </Container>
   );
 };

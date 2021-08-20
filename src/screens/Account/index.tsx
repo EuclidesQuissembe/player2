@@ -7,8 +7,11 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import FlatListSeparator from '../../components/FlatListSeparator';
 
 import { Username, Email, Photo, Button, ButtonText, Logout } from './styles';
+import useAuth from '../../hooks/useAuth';
 
 const Account: React.FC = () => {
+  const { logout } = useAuth();
+
   const data = [
     {
       id: '1',
@@ -95,7 +98,7 @@ const Account: React.FC = () => {
       ListFooterComponent={
         <>
           <FlatListSeparator />
-          <Logout onPress={() => {}} activeOpacity={0.7}>
+          <Logout onPress={() => logout()} activeOpacity={0.7}>
             <MaterialIcons name="exit-to-app" size={24} color="#53B175" />
             <Text
               style={{
